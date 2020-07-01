@@ -6,7 +6,6 @@ CONFIG -= qt
 SOURCES += \
         elements.cpp \
         main.cpp \
-        menu.cpp \
         platform.cpp \
         player.cpp
 
@@ -19,6 +18,5 @@ DEPENDPATH += F:/AIR-Studia/SFML-2.5.1/include
 
 HEADERS += \
     elements.h \
-    menu.h \
     platform.h \
     player.h

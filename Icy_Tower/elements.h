@@ -23,7 +23,7 @@ class Elements : public sf::Sprite
         virtual sf::Vector2f getspeed() const;
         virtual void update(const sf::Time &time);
         virtual void windowCollision(const sf::IntRect &pos);
-        virtual void Collision(std::unique_ptr<Elements> *){return;}
+        virtual bool Collision(std::unique_ptr<Elements> *)=0;
         virtual ~Elements()=default;
 
 };
