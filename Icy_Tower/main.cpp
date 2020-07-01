@@ -9,6 +9,7 @@ int main()
 
     sf::Texture texture_back;
     if(!texture_back.loadFromFile("Textures/wall.jpg")) {return 1;}
+    texture_back.setRepeated(true);
 
     sf::Sprite back;
     back.setTexture(texture_back);
@@ -60,7 +61,7 @@ int main()
     auto player=dynamic_cast<Player*>(objects.emplace_back(std::make_unique<Player>()).get());
     player->setTexture(texture_hero);
     player->setScale(1.6,1.6);
-    player->setPosition(200,540);
+    player->setPosition(400,600-player->getGlobalBounds().height);
 
     for(unsigned int i=0;i<6;i++)
     {
@@ -68,7 +69,7 @@ int main()
     }
 
     sf::Vector2f gravity({0,1600});
-    sf::Vector2f gravity2({0,1});
+    sf::Vector2f gravity2({0,0.8});
 
     sf::Clock clock;
     sf::Time time;
