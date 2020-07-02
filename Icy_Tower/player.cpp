@@ -30,9 +30,18 @@ void Player::windowCollision(const sf::IntRect &pos)
     if(this->getGlobalBounds().left<=pos.left && this->speed.x<0)
         this->speed.x=0;
 
-    if(this->getGlobalBounds().left+this->getGlobalBounds().width>=pos.left+pos.width && this->speed.x>0)
+    if(this->getGlobalBounds().left + this->getGlobalBounds().width>=pos.left+pos.width && this->speed.x>0)
         this->speed.x=0;
 
-    if(this->getGlobalBounds().top+this->getGlobalBounds().height>=pos.top+pos.height && this->speed.y>0)
+    if(this->getGlobalBounds().top + this->getGlobalBounds().height>=pos.top+pos.height && this->speed.y>0)
         this->speed.y=0;
+}
+
+bool Player::floorCollision(const sf::IntRect &pos)
+{
+    if(this->getGlobalBounds().top + this->getGlobalBounds().height>=pos.top+pos.height && this->speed.y>=0)
+    {
+        return true;
+    }
+    return false;
 }
