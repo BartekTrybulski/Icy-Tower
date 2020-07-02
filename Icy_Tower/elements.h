@@ -2,6 +2,7 @@
 #define ELEMENTS_H
 
 #include <iostream>
+#include <fstream>
 #include <SFML/Window.hpp>
 #include <SFML/Graphics.hpp>
 #include <SFML/OpenGL.hpp>

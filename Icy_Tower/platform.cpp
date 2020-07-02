@@ -1,6 +1,8 @@
 #include "platform.h"
+#include "elements.h"
 
 sf::Texture Platform::texture_platform2;
+sf::Texture Platform::texture_platform3;
 int Platform::counter=0;
 
 Platform::Platform()
@@ -11,6 +13,15 @@ Platform::Platform()
 void Platform::loader(const std::string &path)
 {
     if(!texture_platform2.loadFromFile(path))
+    {
+        std::cerr<<"Nie mozna zaladowac textury"<<std::endl;
+        throw "Nie mozna zaladowac textury";
+    }
+}
+
+void Platform::loader2(const std::string &path)
+{
+    if(!texture_platform3.loadFromFile(path))
     {
         std::cerr<<"Nie mozna zaladowac textury"<<std::endl;
         throw "Nie mozna zaladowac textury";
@@ -38,11 +49,17 @@ void Platform::windowCollision(const sf::IntRect &pos)
     if(this->getGlobalBounds().top+this->getGlobalBounds().height>=pos.top+pos.height+40 && this->speed.y>0)
     {
         this->setPosition(rand()%int(800-this->getGlobalBounds().width),0);
+        this->setspeedx(static_cast<float>(rand()%300-200));
         counter+=1;
-        std::cout<<counter<<std::endl;
-        if(counter>20)
+        if(counter>50)
         {
+            Platform::loader("Textures/platform2.png");
             this->setTexture(texture_platform2);
+        }
+        if(counter>100)
+        {
+            Platform::loader2("Textures/platform3.png");
+            this->setTexture(texture_platform3);
         }
     }
 }

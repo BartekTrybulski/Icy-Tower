@@ -41,7 +41,7 @@ bool Player::floorCollision(const sf::IntRect &pos)
 {
     if(this->getGlobalBounds().top + this->getGlobalBounds().height>=pos.top+pos.height && this->speed.y>=0)
     {
-        return true;
+       return true;
     }
     return false;
 }
