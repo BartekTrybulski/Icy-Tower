@@ -2,7 +2,6 @@
 #include "player.h"
 #include "platform.h"
 
-
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(800, 600), "Icy Tower");
@@ -50,44 +49,37 @@ int main()
     sf::Texture texture_hero;
     if(!texture_hero.loadFromFile("Textures/harold.png")) {return 1;}
 
-    sf::Texture texture_platform;
-    if(!texture_platform.loadFromFile("Textures/platform.png")) {return 1;}
+    Platform::loader({"Textures/platform.png","Textures/platform2.png","Textures/platform3.png"});
 
     std::vector<std::unique_ptr<Elements>> objects;
 
     objects.emplace_back(std::make_unique<Platform>());
     objects[0]->setPosition(rand()%800,500);
-    objects[0]->setTexture(texture_platform);
     objects[0]->setScale(0.35,0.35);
-    objects[0]->setspeedy(100);
+    objects[0]->setspeedy(150);
 
     objects.emplace_back(std::make_unique<Platform>());
     objects[1]->setPosition(rand()%800,400);
-    objects[1]->setTexture(texture_platform);
     objects[1]->setScale(0.35,0.35);
-    objects[1]->setspeedy(100);
+    objects[1]->setspeedy(150);
 
     objects.emplace_back(std::make_unique<Platform>());
     objects[2]->setPosition(rand()%800,300);
-    objects[2]->setTexture(texture_platform);
     objects[2]->setScale(0.35,0.35);
-    objects[2]->setspeedy(100);
+    objects[2]->setspeedy(150);
 
     objects.emplace_back(std::make_unique<Platform>());
     objects[3]->setPosition(rand()%800,200);
-    objects[3]->setTexture(texture_platform);
     objects[3]->setScale(0.35,0.35);
-    objects[3]->setspeedy(100);
+    objects[3]->setspeedy(150);
 
     objects.emplace_back(std::make_unique<Platform>());
     objects[4]->setPosition(rand()%800,100);
-    objects[4]->setTexture(texture_platform);
     objects[4]->setScale(0.35,0.35);
-    objects[4]->setspeedy(100);
+    objects[4]->setspeedy(150);
 
     objects.emplace_back(std::make_unique<Platform>());
     objects[5]->setPosition(rand()%800,0);
-    objects[5]->setTexture(texture_platform);
     objects[5]->setScale(0.35,0.35);
 
     auto player=dynamic_cast<Player*>(objects.emplace_back(std::make_unique<Player>()).get());
@@ -102,13 +94,18 @@ int main()
     }
 
     sf::Vector2f gravity({0,1600});
-    sf::Vector2f gravity2({0,0.07});
+    sf::Vector2f gravity2({0,1});
 
     sf::Clock clock;
     sf::Time time;
 
     bool wascol=false;
     bool wasstarted=false;
+
+    float bar_time=100;
+    sf::RectangleShape bar;
+    bar.setPosition(5,170);
+    bar.setFillColor(sf::Color::White);
 
     while(window.isOpen())
     {
@@ -118,7 +115,7 @@ int main()
         for(int i=0;i<6;i++)
         {
             objects[i]->setspeedy(100);
-            objects[i]->setTexture(texture_platform);
+            objects[i]->setTexture((Platform::gettexture())[0]);
         }
         Platform::setcounter(0);
 
@@ -142,6 +139,16 @@ int main()
                         player->addtospeed({0,-600});
                         wasstarted=true;
                     }
+                }else
+                {
+                    if(bar_time>=100)
+                    {
+                        if(event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space)
+                        {
+                            player->addtospeed({0,-600});
+                            bar_time=0;
+                        }
+                    }
                 }
 
                 if(sf::Keyboard::isKeyPressed(sf::Keyboard::Left))
@@ -153,6 +160,8 @@ int main()
                     player->setspeedx(500);
                 }
             }
+
+            bar.setSize({20,-bar_time*1.3f});
 
             window.clear(sf::Color::Black);
 
@@ -216,9 +225,13 @@ int main()
             score.setString(ss.str());
             window.draw(score);
 
-            // end the current frame
+            window.draw(bar);
             window.display();
             time = clock.getElapsedTime();
+
+            bar_time+=time.asSeconds()*5;
+            if(bar_time>100)
+                bar_time=100;
         }
         while(true)
         {
@@ -254,6 +267,7 @@ int main()
                 wfile<<best;
             }
             wfile.close();
+
             ss3<<"YOUR BEST: "<<best;
             score3.setString(ss3.str());
             window.draw(score3);

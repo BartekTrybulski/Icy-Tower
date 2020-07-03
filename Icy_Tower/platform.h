@@ -7,14 +7,14 @@ class Platform : public Elements
 {
     protected:
         static int counter;
-        static sf::Texture texture_platform2;
-        static sf::Texture texture_platform3;
+        static std::vector<sf::Texture> texture_platform;
+
 
     public:
         Platform();
-        static void loader(const std::string &);
-        static void loader2(const std::string &);
+        static void loader(const std::vector<std::string> &paths);
         static int getcounter();
+        static sf::Texture *gettexture();
         static void setcounter(const int&);
         virtual void windowCollision(const sf::IntRect &pos) override;
         virtual bool Collision(std::unique_ptr<Elements> *) override;
