@@ -9,7 +9,6 @@ class Platform : public Elements
         static int counter;
         static std::vector<sf::Texture> texture_platform;
 
-
     public:
         Platform();
         static void loader(const std::vector<std::string> &paths);

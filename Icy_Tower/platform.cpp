@@ -51,11 +51,11 @@ void Platform::windowCollision(const sf::IntRect &pos)
         this->setPosition(rand()%int(800-this->getGlobalBounds().width),0);
         this->setspeedx(static_cast<float>(rand()%300-200));
         counter+=1;
-        if(counter>10)
+        if(counter>50)
         {
             this->setTexture(texture_platform[1]);
         }
-        if(counter>30)
+        if(counter>100)
         {
             this->setTexture(texture_platform[2]);
         }

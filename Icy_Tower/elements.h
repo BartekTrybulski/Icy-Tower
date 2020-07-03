@@ -9,8 +9,6 @@
 #include <sstream>
 #include <cmath>
 
-
-
 class Elements : public sf::Sprite
 {
     protected:
@@ -28,7 +26,6 @@ class Elements : public sf::Sprite
         virtual void windowCollision(const sf::IntRect &pos);
         virtual bool Collision(std::unique_ptr<Elements> *)=0;
         virtual ~Elements()=default;
-
 };
 
 #endif // ELEMENTS_H

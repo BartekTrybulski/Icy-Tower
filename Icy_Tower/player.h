@@ -17,7 +17,6 @@ class Player : public Elements
         virtual void windowCollision(const sf::IntRect &pos) override;
         bool floorCollision(const sf::IntRect &pos);
         virtual void update(const sf::Time &time) override;
-
 };
 
 
