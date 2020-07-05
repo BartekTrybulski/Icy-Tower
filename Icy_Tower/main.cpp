@@ -111,6 +111,7 @@ int main()
     {
         wascol=false;
         wasstarted=false;
+        bar_time=100;
         player->setPosition(400,600-player->getGlobalBounds().height);
         for(int i=0;i<6;i++)
         {
