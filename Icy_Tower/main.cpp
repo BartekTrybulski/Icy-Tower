@@ -94,7 +94,7 @@ int main()
     }
 
     sf::Vector2f gravity({0,1600});
-    sf::Vector2f gravity2({0,1});
+    sf::Vector2f gravity2({0,0.9});
 
     sf::Clock clock;
     sf::Time time;
@@ -230,7 +230,7 @@ int main()
             window.display();
             time = clock.getElapsedTime();
 
-            bar_time+=time.asSeconds()*5;
+            bar_time+=time.asSeconds()*8;
             if(bar_time>100)
                 bar_time=100;
         }
