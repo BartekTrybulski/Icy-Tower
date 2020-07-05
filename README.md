@@ -12,3 +12,5 @@ Wraz ze wzrostem wysokości platformy zaczynają zmieniać swoje tekstury i co 1
 Oprócz utrudnień w grze znajdzie się ułatwienie takie jak podwójny skok, który dostępny będzie co jakiś czas.
 Zostanie on dopasowany w taki sposób, aby gra nie stała się zbyt łatwa.
 Gra kończy się gdy postać spadnie. To na jaką wysokość uda się wskoczyć zostanie wyświetlone na ekranie jako wynik, a jeśli był on największym z dotychczasowych to zostanie zapisany jako rekord.
+
+Prezentacja: https://www.youtube.com/watch?v=ahw4ivG4hWc&feature=youtu.be
